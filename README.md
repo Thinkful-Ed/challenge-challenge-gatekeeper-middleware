@@ -2,7 +2,7 @@
 
 [GitHub](https://github.com/Thinkful-Ed/express-gatekeeper-middleware-challenge) | [Glitch](https://glitch.com/edit/#!/express-gatekeeper-middleware-challenge)
 
-This is a challenge in Thinkful's *Web Development Bootcamp*.
+This is a challenge in Thinkful's *Web Development Bootcamp*. Related to middleware.
 
 You need to create a piece of middleware that parses request for a header with the name `x-username-and-password`. The value for that header should looke like this: `user=user@somewhere.com&pass=password`.
 
