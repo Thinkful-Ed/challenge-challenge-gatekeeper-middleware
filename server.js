@@ -65,10 +65,25 @@ const USERS = [
 //     (aka, `req.user = matchedUser`)
 function gateKeeper(req, res, next) {
   // your code should replace the line below
+  console.log('middlewares!!')
+  const userPass = req.get('x-username-and-password')
+  const query = queryString.parse(userPass)
+  const user = query.user || null;
+  const pass = query.pass || null;
+    // ^^ the more verbose way to express this is:
+   // const {user, pass} = Object.assign(
+  //   {user: null, pass: null}, queryString.parse(req.get('x-username-and-password')));
+  req.user = USERS.find(function (usr, idx){
+    return usr.userName === query.user && usr.password === query.pass 
+  })                  
+              // arrow function of above
+    // (usr, idx) => usr.userName === query.user && usr.password === query.pass)
+  console.log(req.user);
   next();
 }
 
 // Add the middleware to your app!
+app.use(gateKeeper)
 
 // this endpoint returns a json object representing the user making the request,
 // IF they supply valid user credentials. This endpoint assumes that `gateKeeper` 
